@@ -5,10 +5,11 @@
 #include <iostream>
 #include <vector>
 #include <climits>
+#include <algorithm>
 
 using namespace std;
 
-const unsigned int DEFAULT_SIZE = 179;
+const unsigned int DEFAULT_SIZE = 179;              //constant def w/ prime to reduce collisions
 
 class HashTable {
 private:
@@ -24,7 +25,7 @@ private:
     vector<Node*> nodes;
     unsigned tableSize = DEFAULT_SIZE;
 
-    unsigned hash(string courseNumber) {
+    unsigned hash(string courseNumber) {            //converts course num to index for hash table
         unsigned int hashValue = 0;
         for (char c : courseNumber) {
             hashValue = hashValue * 31 + c;
@@ -33,8 +34,8 @@ private:
     }
 
 public:
-    HashTable() { nodes.resize(DEFAULT_SIZE); }
-    ~HashTable() {
+    HashTable() { nodes.resize(DEFAULT_SIZE); }     //default constructor
+    ~HashTable() {                                  //destructor
         for (auto& node : nodes) {
             Node* current = node;
             while (current != nullptr) {
@@ -44,7 +45,7 @@ public:
             }
         }
     }
-    void Insert(Course course) {
+    void Insert(Course course) {                    //insert course into hash table
         unsigned key = hash(course.courseNumber);
         Node* newNode = new Node(course, key);
         if (nodes[key] == nullptr) {
@@ -58,16 +59,28 @@ public:
             current->next = newNode;
         }
     }
-    void PrintAll() {
+    void printCourseList() {                        //print course list
+        vector<Course> allCourses;
+
         for (auto& node : nodes) {
             Node* current = node;
             while (current != nullptr) {
-                cout << current->course.courseNumber << ", " << current->course.courseName << endl;
+                allCourses.push_back(current->course);
                 current = current->next;
             }
         }
+
+        sort(allCourses.begin(), allCourses.end(), [](const Course& a, const Course& b) {
+            return a.courseNumber < b.courseNumber;
+            });
+
+        for (const auto& course : allCourses) {
+            cout << course.courseNumber << ", " << course.courseName << endl;
+        }
+        
     }
-    Course Search(string courseNumber) {
+
+    Course Search(string courseNumber) {             //search for course by number
         unsigned key = hash(courseNumber);
         Node* current = nodes[key];
         while (current != nullptr) {
@@ -77,7 +90,7 @@ public:
             current = current->next;
         }
         cout << "Course not found" << endl;
-        return Course(); // Return an empty course if not found
+        return Course();
     }
 };
 

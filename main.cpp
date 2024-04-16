@@ -4,7 +4,8 @@
 #include <sstream>
 
 
-void loadCourses(HashTable& table) {
+
+void loadCourses(HashTable& table) {                //user inputs file, gets read and parsed
     string filename;
     cout << "Enter filename: ";
     cin >> filename;
@@ -31,7 +32,7 @@ void loadCourses(HashTable& table) {
     cout << "Data loaded successfully." << endl;
 }
 
-void displayMenu() {
+void displayMenu() {                                //display menu options
     cout << "1. Load Data Structure." << endl;
     cout << "2. Print Course List." << endl;
     cout << "3. Print Course." << endl;
@@ -54,7 +55,7 @@ int main() {
             loadCourses(courseTable);
             break;
         case 2:
-            courseTable.PrintAll();
+            courseTable.printCourseList();
             break;
         case 3: {
             string courseNumber;

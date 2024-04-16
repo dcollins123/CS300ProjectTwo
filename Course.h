@@ -12,9 +12,8 @@ public:
     string courseName;
     vector<string> prerequisites;
 
-    Course() = default;
-
-    Course(string num, string name, vector<string> prereqs)
+    Course() = default;                                          //Default constructor
+    Course(string num, string name, vector<string> prereqs)      //Initialize course
         : courseNumber(num), courseName(name), prerequisites(prereqs) {}
 
 };
