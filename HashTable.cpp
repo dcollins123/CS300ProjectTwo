@@ -1,3 +1,7 @@
+/* Name:   HashTable.cpp
+   Author: Dan Collins
+   Date:   16 Apr 2024  */
+
 #include "HashTable.h"
 #include <iostream>
 #include <fstream>

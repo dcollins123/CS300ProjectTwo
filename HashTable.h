@@ -1,3 +1,7 @@
+/* Name:   HashTable.h
+   Author: Dan Collins
+   Date:   16 Apr 2024  */
+
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
 

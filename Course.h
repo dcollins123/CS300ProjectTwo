@@ -1,3 +1,7 @@
+/* Name:   Course.h
+   Author: Dan Collins
+   Date:   16 Apr 2024  */
+
 #ifndef COURSE_H
 #define COURSE_H
 
